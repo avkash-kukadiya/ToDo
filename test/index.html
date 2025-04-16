@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>todo</title>
+    <style>
+        .pera {
+            width: 100%;
+            border: 1px solid red;
+
+        }
+
+        .form {
+
+            width: 25%;
+            margin: 0 auto;
+        }
+
+        .ips {
+            padding: 10px 10px;
+            margin: 10px;
+            font-size: 20px;
+            width: 100%;
+            /* display: block; */
+        }
+
+        #btn {
+            padding: 5px 10px;
+            background-color: rgb(60, 216, 28);
+
+        }
+
+        button {
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            font-size: 20px;
+            margin-left: 10px;
+            font-weight: 800;
+            cursor: pointer;
+        }
+
+        ul {
+            width: 25%;
+            margin: 0 auto;
+            margin-top: 40px;
+        }
+
+        .lis {
+            font-size: 18px;
+            font-size: 25px;
+        }
+
+        #get {
+            background-color: orange;
+
+        }
+
+        .op {
+            display: flex;
+            justify-content: left;
+            padding: 20px;
+        }
+
+        .crd {
+            width: 20%;
+            padding: 15px;
+            margin: 15px;
+            box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="pera">
+        <!-- <form action=""> -->
+        <div class="form">
+            <input type="text" placeholder="title" id="inp" class="ips">
+            <input type="text" placeholder="description" id="dec" class="ips">
+            <button type="button" id="btn" onclick="todo()">save</button>
+            <button type="button" id="get" onclick="get()"> new todo</button>
+        </div>
+        <!-- </form> -->
+        <ul class="lists">
+            <li class="lis">hello</li>
+        </ul>
+    </div>
+    <div class="pera op" id="crs">
+        <div class="crd">
+            <h2 class="title">helo</h2>
+            <p class="de"> Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fugit illo minus ipsa accusamus
+                iste cumque hic aliquid quis rem, dolores reprehenderit, unde labore amet nulla. Quidem omnis, nisi
+                voluptate expedita ipsa labore nihil aliquid amet nam sapiente ducimus quo accusantium voluptatum libero
+                a, rem soluta modi corporis id officia dolore.</p>
+        </div>
+    </div>
+    <script>
+        let div = document.querySelector('#crs')
+        let ul = document.querySelector('ul')
+        let ip = document.querySelector("#inp");
+        let ip2 = document.querySelector("#dec");
+        let c = localStorage.getItem(`c`) || 0;
+        let xp = ip.value;
+        let net;
+        let arr = net || []
+        // arr.forEach(x => {
+        //     x.title ='prerna'
+        //     x.decs = 'local'
+        //     console.log(x)
+        // })
+
+
+
+
+        function todo() {
+
+            let apc =  {
+                title : ip.value,
+                decs : ip2.value
+            }
+            arr.push(apc);
+            let arp =JSON.stringify(arr);
+            localStorage.setItem('key', `${arp}`);
+            let data = localStorage.getItem(`key`)
+            console.log(arp)
+             net = JSON.parse(data)
+            console.log(net)
+
+            // arr.forEach(x => {
+            //     x.title = ip.value;
+            //     x.decs = ip2.value;
+               
+
+
+            // })
+        //  /   arr.map(x => {
+
+        //         console.log(x)
+        //     })
+        //     console.log(xp)
+            
+            // c++;
+            // localStorage.setItem('c', `${c}`)
+            // localStorage.setItem(`key${c}`, `${ip.value}`);
+            // localStorage.setItem(`dec${c}`, `${ip2.value}`);
+            ip.value = "";
+            ip2.value = "";
+            //    localStorage.setItem('key',`${xp}`);
+
+        }
+        function get() {
+            
+            ul.innerHTML = "";
+            div.innerHTML = "";
+            
+             net.forEach(x =>{
+                console.log(x)
+                lb = x.title
+                lb2 =x.decs
+                div.innerHTML += `<div class="crd">
+            <h2 class="title">${lb}</h2>
+            <p class="de">${lb2} </p>
+        </div>`
+             })
+            
+        //     let n = localStorage.getItem(`c`);
+        //     console.log(n)
+        //     let lb
+        //     let lb2
+        //     for (let i = 1; i <= n; i++) {
+
+        //         console.log(lb)
+        //         lb = localStorage.getItem(`key${i}`)
+        //         lb2 = localStorage.getItem(`dec${i}`)
+        //         div.innerHTML += `<div class="crd">
+        //     <h2 class="title">${lb}</h2>
+        //     <p class="de">${lb2} </p>
+        // </div>`
+        //     }
+           
+
+        }
+
+    </script>
+</body>
+
+</html>
